@@ -55,12 +55,12 @@ function successHandle(stateData) {
 //Create scale functions
 // ==============================
     var xLinearScale = d3.scaleLinear()
-      .domain([8.1, d3.max(stateData, d => d.poverty)])
+      .domain([0, d3.max(stateData, d => d.poverty)])
       .range([0, width]);
 
     // Create y scale function
     var yLinearScale = d3.scaleLinear()
-      .domain([20, d3.max(stateData, d => d.obesity)])
+      .domain([0, d3.max(stateData, d => d.obesity)])
       .range([height, 0]);
 
 //Create axis functions
@@ -68,7 +68,8 @@ function successHandle(stateData) {
     var bottomAxis = d3.axisBottom(xLinearScale)
       // Adjust the numbet of ticks for bottom axis
       .ticks(7);
-    var leftAxis = d3.axisLeft(yLinearScale);
+    var leftAxis = d3.axisLeft(yLinearScale)
+       .ticks(5);
 
 //Append Axes to the chart
 // ==============================
@@ -90,8 +91,8 @@ function successHandle(stateData) {
     .append("circle")
     .attr("cx", d => xLinearScale(d.poverty))
     .attr("cy", d => yLinearScale(d.obesity))
-    .attr("r", "13")
-    .attr("fill", "#788dc2")
+    .attr("r", "20")
+    .attr("fill", "darkred")
     .attr("opacity", ".75");
 
 //Append text to circles
@@ -103,6 +104,7 @@ function successHandle(stateData) {
       .attr("x", d => xLinearScale(d.poverty))
       .attr("y", d => yLinearScale(d.obesity))
       .style("font-size", "13px")
+      .attr('text-anchor', 'middle')
       .style("fill","white")
       .text(d =>(d.abbr));
 
@@ -142,7 +144,6 @@ function successHandle(stateData) {
     chartGroup.append("text")
       .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
       .attr("class", "axisText")
-      .attr('text-anchor', 'middle')
       .text("In Poverty (%)");
   }
 
