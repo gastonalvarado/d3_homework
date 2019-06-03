@@ -3,7 +3,7 @@
 //Prepare Canvas and SVG
 //=================================
 //Store width and height parameters for the canvas
-var svgWidth = 960;
+var svgWidth = 860;
 var svgHeight = 500;
 
 //Set margins
@@ -55,12 +55,12 @@ function successHandle(stateData) {
 //Create scale functions
 // ==============================
     var xLinearScale = d3.scaleLinear()
-      .domain([0, d3.max(stateData, d => d.poverty)])
+      .domain([0, (d3.max(stateData, d => d.poverty))+1])
       .range([0, width]);
 
     // Create y scale function
     var yLinearScale = d3.scaleLinear()
-      .domain([0, d3.max(stateData, d => d.obesity)])
+      .domain([0, (d3.max(stateData, d => d.obesity))+10])
       .range([height, 0]);
 
 //Create axis functions
