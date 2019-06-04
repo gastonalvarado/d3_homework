@@ -60,7 +60,7 @@ function successHandle(stateData) {
 
     // Create y scale function
     var yLinearScale = d3.scaleLinear()
-      .domain([0, (d3.max(stateData, d => d.obesity))+10])
+      .domain([0, (d3.max(stateData, d => d.obesity))+5])
       .range([height, 0]);
 
 //Create axis functions
@@ -91,7 +91,7 @@ function successHandle(stateData) {
     .append("circle")
     .attr("cx", d => xLinearScale(d.poverty))
     .attr("cy", d => yLinearScale(d.obesity))
-    .attr("r", "20")
+    .attr("r", "15")
     .attr("fill", "darkred")
     .attr("opacity", ".75");
 
@@ -103,7 +103,7 @@ function successHandle(stateData) {
       .append("text")
       .attr("x", d => xLinearScale(d.poverty))
       .attr("y", d => yLinearScale(d.obesity))
-      .style("font-size", "13px")
+      .style("font-size", "12px")
       .attr('text-anchor', 'middle')
       .style("fill","white")
       .text(d =>(d.abbr));
@@ -134,7 +134,7 @@ function successHandle(stateData) {
 // Create axes labels
     chartGroup.append("text")
       .attr("transform", "rotate(-90)")
-      .attr("y", 0 - margin.left + 40)
+      .attr("y", 0 - margin.left + 10)
       .attr("x", 0 - (height / 2))
       .attr("dy", "1em")
       .attr("class", "axisText")
